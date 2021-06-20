@@ -295,7 +295,7 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
                         //마커6 이벤트
                         marker6.setOnClickListener {
-                            val intent = Intent(this, DetailActivity::class.java)
+                            val intent = Intent(this, DamageDetailActivity::class.java)
 
                             intent.putExtra("title", document.data["title"].toString())
                             intent.putExtra("timestamp", document.data["timestamp"].toString())
