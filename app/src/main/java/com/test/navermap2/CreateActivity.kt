@@ -71,13 +71,6 @@ class CreateActivity : AppCompatActivity() {
         }
 
         init()
-//        // 등록하기 버튼
-//        btn_register.setOnClickListener{
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            requestLocation()
-//            contentUpload()
-//        }
     }
 
     //좌표값 불러오는 함수
@@ -92,20 +85,11 @@ class CreateActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         locationClient?.lastLocation
             ?.addOnSuccessListener { location ->
                 if (location != null) {
-//                    var t1 = Toast.makeText(this, "최근 위치 : ${location.latitude}, ${location.longitude}", Toast.LENGTH_LONG)
-//                    t1.show()
                     latitude = location.latitude
                     longitude = location.longitude
                 }
@@ -279,11 +263,6 @@ class CreateActivity : AppCompatActivity() {
 
         var storageRef = storage?.reference?.child("images")?.child(imageFileName)
 
-//        // FileUpload
-//        storageRef?.putFile(photoUri!!)?.addOnSuccessListener{
-//            Toast.makeText(this, "성공", Toast.LENGTH_LONG).show()
-//        }
-
         //Promise method
         storageRef?.putFile(photoUri!!)?.continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
             return@continueWithTask storageRef.downloadUrl
@@ -317,22 +296,6 @@ class CreateActivity : AppCompatActivity() {
 
             finish()
         }
-
-//        //Callback method
-//        storageRef?.putFile(photoUri!!)?.addOnSuccessListener {
-//            storageRef.downloadUrl.addOnSuccessListener { uri ->
-//                var contentDTO = ContentDTO()
-//                //Insert downloadUrl of image
-//                contentDTO.imageUrl = uri.toString()
-//                //Insert explain of content
-//                contentDTO.explain = editTextTextPersonName.text.toString()
-//                //Insert timestamp
-//                contentDTO.timestamp = System.currentTimeMillis()
-//                firestore?.collection("images")?.document()?.set(contentDTO)
-//                setResult(Activity.RESULT_OK)
-//                finish()
-//            }
-//        }
     }
 
     // 이미지 저장 함수

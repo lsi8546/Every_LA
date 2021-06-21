@@ -71,14 +71,6 @@ class DamageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*
-        // 상세페이지 버튼
-        imageView.setOnClickListener {
-            val intent = Intent(this, DetailActivity::class.java)
-            startActivity(intent)
-        }
-         */
-
         // 하단바 활성화
         initNavigationBar()
     }

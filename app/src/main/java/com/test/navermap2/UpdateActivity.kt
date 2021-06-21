@@ -142,8 +142,6 @@ class UpdateActivity : AppCompatActivity() {
         locationClient?.lastLocation
             ?.addOnSuccessListener { location ->
                 if (location != null) {
-//                    var t1 = Toast.makeText(this, "최근 위치 : ${location.latitude}, ${location.longitude}", Toast.LENGTH_LONG)
-//                    t1.show()
                     latitude = location.latitude
                     longitude = location.longitude
                 }
