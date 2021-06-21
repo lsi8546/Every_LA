@@ -54,9 +54,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 this@NaverMapActivity,
                 android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth
             )
-//            dlg.setTitle("                      핀 정보") //제목
-//            dlg.setMessage("자동 태그 분석을 위해 와이파이나 데이터를 연결해주세요.") // 메시지
-//            dlg.setIcon(R.mipmap.ic_launcher)
             dlg.setView(R.layout.ic_info)
             dlg.setPositiveButton(
                 "확인                                    ",
@@ -67,33 +64,7 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
             dlg.show()
         }
 
-//        // 로그아웃
-//        logout.setOnClickListener {
-//            auth.signOut()
-////            finish()
-//            startActivity(Intent(this, LoginActivity::class.java))
-//        }
 
-//        // 파이어 베이스
-//        var firestore: FirebaseFirestore?
-//
-//
-//        firestore = FirebaseFirestore.getInstance()
-//
-//        firestore.collection("images")
-//            .get()
-//            .addOnSuccessListener { result ->
-//                for (document in result) {
-////                    Log.d(NaverMapActivity.TAG, "${document.id} => ${document.data["latitude"]}")
-//                    latitudes.add(document.data["latitude"] as Double)
-//                    longitudes.add(document.data["longitude"] as Double)
-//                    println(latitudes)
-//
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.d(TestActivity.TAG, "Error getting documents: ", exception)
-//            }
     }
 
     override fun onBackPressed() {
@@ -168,10 +139,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     if(document.data["latitude"] != null) {
-//                    Log.d(NaverMapActivity.TAG, "${document.id} => ${document.data["latitude"]}")
-//                    latitudes.add(document.data["latitude"] as Double)
-//                    longitudes.add(document.data["longitude"] as Double)
-
                         // 마커5 속성
                         val marker5 = Marker()
                         marker5.position = LatLng(
@@ -179,12 +146,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
                             document.data["longitude"] as Double
                         )
                         marker5.map = naverMap
-//                    marker5.icon = OverlayImage.fromResource(R.drawable.ic_marker_yellow)
-                        //        marker4.icon = MarkerIcons.BLACK
-//                    marker5.captionHaloColor = Color.rgb(0, 0, 244)
-                        //        marker4.width = 50
-                        //        marker4.height = 80
-
                         if (time.toString().substring(0, 8)
                                 .toInt() - document.data["timestamp"].toString().substring(0, 8)
                                 .toInt() >= 3
@@ -227,13 +188,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
                             intent.putExtra("longitude", document.data["longitude"] as Double)
 
                             startActivity(intent)
-//                        Toast.makeText(this, "마커 1 클릭됨", Toast.LENGTH_SHORT).show()
-//                        infoWindow.open(marker5)
-//                        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
-//                            override fun getText(infoWindow: InfoWindow): CharSequence {
-//                                return document.data["title"] as CharSequence
-//                            }
-//                        }
 
                             // 이벤트 전파
                             false
@@ -246,10 +200,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     if(document.data["latitude"] != null){
-    //                    Log.d(NaverMapActivity.TAG, "${document.id} => ${document.data["latitude"]}")
-    //                    latitudes.add(document.data["latitude"] as Double)
-    //                    longitudes.add(document.data["longitude"] as Double)
-
                         // 마커6 속성
                         val marker6 = Marker()
                         marker6.position = LatLng(
@@ -257,12 +207,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
                             document.data["longitude"] as Double
                         )
                         marker6.map = naverMap
-    //                    marker6.icon = OverlayImage.fromResource(R.drawable.ic_marker_red)
-                        //        marker4.icon = MarkerIcons.BLACK
-    //                    marker6.captionHaloColor = Color.rgb(244, 0, 0)
-                        //        marker6.width = 50
-                        //        marker6.height = 80
-
                         if (time.toString().substring(0, 8)
                                 .toInt() - document.data["timestamp"].toString().substring(0, 8)
                                 .toInt() >= 3
@@ -305,14 +249,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
                             intent.putExtra("longitude", document.data["longitude"] as Double)
 
                             startActivity(intent)
-    //                        Toast.makeText(this, "마커 1 클릭됨", Toast.LENGTH_SHORT).show()
-    //                        infoWindow.open(marker5)
-    //                        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
-    //                            override fun getText(infoWindow: InfoWindow): CharSequence {
-    //                                return document.data["title"] as CharSequence
-    //                            }
-    //                        }
-
                             // 이벤트 전파
                             false
                         }
@@ -322,9 +258,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnFailureListener { exception ->
                 Log.d(TestActivity.TAG, "Error getting documents: ", exception)
             }
-        // ...
-//        val coord = LatLng(37.5670135, 126.9783740)
-//        val latLng = LatLng(37.5666103, 126.9783882)
 
         // 카메라 위치, 줌 조정
         val cameraUpdate = CameraUpdate.scrollTo(LatLng(35.4540299, 128.8082449))
@@ -340,51 +273,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
         // 정보 창 객체 생성
         val infoWindow = InfoWindow()
 
-
-//        // 마커1 속성
-//        marker1.position = LatLng(35.4540299, 128.8062449)
-//        marker1.map = naverMap
-//        marker1.icon = OverlayImage.fromResource(R.drawable.ic_marker_red)
-////        marker1.icon = MarkerIcons.BLACK
-//        marker1.captionHaloColor = Color.rgb(30, 203, 126)
-////        marker1.width = 100
-////        marker1.height = 160
-//
-//        // 마커2 속성
-//        marker2.position = LatLng(35.45393508850267, 128.80839126919096)
-//        marker2.map = naverMap
-//        marker2.icon = OverlayImage.fromResource(R.drawable.ic_marker_green)
-////        marker2.icon = MarkerIcons.BLACK
-//        marker2.captionHaloColor = Color.rgb(244, 236, 33)
-////        marker2.width = 50
-////        marker2.height = 80
-//
-//        // 마커3 속성
-//        marker3.position = LatLng(35.45383599516676, 128.80783917789597)
-//        marker3.map = naverMap
-//        marker3.icon = OverlayImage.fromResource(R.drawable.ic_marker_yellow)
-////        marker3.icon = MarkerIcons.BLACK
-//        marker3.captionHaloColor = Color.rgb(244, 98, 33)
-//        marker3.width = 50
-//        marker3.height = 80
-
-//        // 마커4 속성
-//        marker4.position = LatLng(35.4540299, 128.8062449)
-//        marker4.map = naverMap
-//        marker4.icon = OverlayImage.fromResource(R.drawable.ic_marker_yellow)
-////        marker4.icon = MarkerIcons.BLACK
-//        marker4.captionHaloColor = Color.rgb(0, 0, 244)
-////        marker4.width = 50
-////        marker4.height = 80
-
-//        // 마커5 속성
-//        marker5.position = LatLng(latitudes.get(0), longitudes.get(0))
-//        marker5.map = naverMap
-//        marker5.icon = OverlayImage.fromResource(R.drawable.ic_marker_yellow)
-////        marker4.icon = MarkerIcons.BLACK
-//        marker5.captionHaloColor = Color.rgb(0, 0, 244)
-////        marker4.width = 50
-////        marker4.height = 80
         // 정보창 속성
         infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
             override fun getText(infoWindow: InfoWindow): CharSequence {
@@ -414,13 +302,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
             true
         }
 
-        // 지도 상에 클릭한 지점 좌표 토스트
-//        naverMap.setOnMapClickListener { point, coord ->
-////            Toast.makeText(this, "${coord.latitude}, ${coord.longitude}",
-////                    Toast.LENGTH_SHORT).show()
-//            marker4.map = naverMap
-//            marker4.position = LatLng(coord.latitude, coord.longitude)
-//        }
         // 설정 객체 생성
         val uiSettings = naverMap.uiSettings
 
@@ -433,14 +314,6 @@ class NaverMapActivity : AppCompatActivity(), OnMapReadyCallback {
         this.naverMap = naverMap
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.NoFollow
-
-//        // 위치 변경시 좌표 토스트, 마커 설정
-//        naverMap.addOnLocationChangeListener { location ->
-////            Toast.makeText(this, "${location.latitude}, ${location.longitude}",
-////                    Toast.LENGTH_SHORT).show()
-//            marker4.map = naverMap
-//            marker4.position = LatLng(location.latitude, location.longitude)
-//        }
     }
     // 권한 설정
     companion object {
